@@ -1,0 +1,79 @@
+{% extends 'Base.html' %}
+
+{% block container %}
+<div class="position-relative py-3 h-100" id="head" style="height:90px!important;">
+    <div class="d-flex w-100 justify-content-between align-items-center container">
+        <h1 class="text-light">Bloggers & Designers</h1>
+        <span></span>
+    </div>
+</div>
+
+<div id="root" class="d-flex flex-nowrap align-items-stretch h-100 pt-2">
+    <div class="left-block w-25 d-flex flex-column" >
+        <div class="w-100 p-4 d-flex align-items-stretch">
+            <input type="text" class="">
+            <button disabled="disabled" class="search-btn ps-2 pe-4"> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path d="M456.69,421.39,362.6,327.3a173.81,173.81,0,0,0,34.84-104.58C397.44,126.38,319.06,48,222.72,48S48,126.38,48,222.72s78.38,174.72,174.72,174.72A173.81,173.81,0,0,0,327.3,362.6l94.09,94.09a25,25,0,0,0,35.3-35.3ZM97.92,222.72a124.8,124.8,0,1,1,124.8,124.8A124.95,124.95,0,0,1,97.92,222.72Z"/></svg>
+            </button>
+        </div>
+        <div class="w-100 p-3 m-2" id="rc-post">
+            <h1 class="h3 fw-bold text-light mb-3">Recent Posts</h1>
+            
+            <div class="post py-3" style="border-top: 2px solid var(--bg-smoke);">
+                <span class="d-flex flex-wrap fs-4 fw-bold lh-1" id="text-white">{{ recents.title }}</span>
+                <span class="d-flex flex-wrap fs-6 lh-1 fw-400" id="rc-post-intro">{{ recents.intro }}</span>
+                <a href="{% url 'posts' recents.id %}" id="text-white" class="fs-6 pt-2">More <ion-icon name="chevron-down-outline"></ion-icon></a>
+            </div>
+            
+        </div>
+    </div>
+
+    <div id="responsive-nav" class="d-none justify-content-center align-items-center px-4 w-100">
+        <div class="p-4 d-flex align-items-stretch">
+            <input type="text" class="">
+            <button disabled="disabled" class="search-btn ps-2 pe-4"> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path d="M456.69,421.39,362.6,327.3a173.81,173.81,0,0,0,34.84-104.58C397.44,126.38,319.06,48,222.72,48S48,126.38,48,222.72s78.38,174.72,174.72,174.72A173.81,173.81,0,0,0,327.3,362.6l94.09,94.09a25,25,0,0,0,35.3-35.3ZM97.92,222.72a124.8,124.8,0,1,1,124.8,124.8A124.95,124.95,0,0,1,97.92,222.72Z"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="right-block w-100 p-2" id="right-block">
+        <div class="album">
+            <div class="">
+                <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-0">
+                    
+                    {% for post in posts %}
+                    
+                        <div class="col m-3" id="post" style="overflow: hidden;">
+                            <div class="">
+                                {% if post.thumbails %}
+                                    <img src="{{ post.thumbails.url }}" alt="thumbails" height="250" width="350" style="object-fit: cover; width: 100% !important;">
+                                {% endif %}
+                                <div class="card-body">
+                                    <p class="text-muted fs-6 fw-normal d-flex justify-content-between" id="text-white">
+                                        <span></span>
+                                        <span>{{ post.author.username }}</span>   
+                                    </p>
+                                    <p class="card-text fs-4 fw-bold" id="text-white">{{ post.title }}</p>
+                                    <p class="text-muted overflow-hidden position-relative" style="height:55px" id="card">{{ post.intro }}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a href="{% url 'posts' post.id %}" type="button" class="btn btn-sm btn-outline-secondary border-0">Read more</a>
+                                        </div>
+                                        
+                                        <div class="mb-1 fs-6 fw-normal" id="text-white">{{ post.created_at|date:"Y-m-d" }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

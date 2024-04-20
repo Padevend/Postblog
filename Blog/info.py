@@ -1,0 +1,5 @@
+EMAIL_USE_TLS = True
+EMAIL_HOST = "aspmx.I.google.com"
+EMAIL_HOST_USER = 'mbpavel21@gmail.com'
+EMAIL_HOST_PASSWORD = 'M671009025'
+EMAIL_PORT = 25

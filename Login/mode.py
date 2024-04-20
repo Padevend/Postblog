@@ -1,0 +1,2 @@
+LIGHT_MODE = True 
+DARK_MODE = False

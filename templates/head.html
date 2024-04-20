@@ -1,0 +1,160 @@
+{% load static %}
+{% load markdown %}
+{% load highlighter %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Blog</title>
+    <link href="{% static 'css/bootstrap/bootstrap.css' %}" rel="stylesheet" >
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" >
+    <link href="{% static 'css/code.css' %}" rel="stylesheet" >
+    <link href="{% static 'css/form.css' %}" rel="stylesheet" >
+    <style>
+        
+        #dashboard .right-box{
+            overflow: auto !important;
+            max-height: 100% !important;
+        }
+        #root #post{
+            width: 30% !important;
+        }
+
+        @media screen and (max-width:1190px) {
+            #root #post{
+                width: 45% !important;
+            }
+        }
+        #header #profile-image svg{
+            height: 65px;
+            width: 65px;
+            margin-top: 7px;
+            fill: var(--bg-white) !important;
+        }
+        #user-connect #profile-image{
+            height: 50px;
+            width: 50px;
+            margin: 0 !important;
+            padding: 0 !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bg-dark) !important;
+            border: 2px solid var(--bg-white);
+            overflow: hidden;
+        }
+        #user-connect .div svg{
+            width: 40px;
+            height: 40px;
+        }
+
+        #user-connect a svg{
+            height: 40px;
+            width: 40px;
+            stroke: #fff !important;
+        }
+        #user-connect a svg path,
+        #user-connect a svg polyline,
+        #user-connect a svg line{
+            stroke: var(--text-gray);
+        }
+
+        #post{
+            background-color: var(--bg-gray) !important;
+            border-radius: 10px;
+            box-shadow: 0 0 8px 0px var(--bg-dark);
+        }
+        #card::after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            inset: 0;
+            background: linear-gradient(to top, var(--bg-gray), transparent);
+        }
+        @font-face {
+            font-family: Lobster;
+            src: url('/static/fonts/.otf');
+        }
+        #blog-name{
+            font-size: 30pt !important;
+            font-family: forte !important;
+            font-weight: 800 !important;
+            color: var(--text-white) !important;
+        }
+        #register-form{
+            background-color: var(--bg-gray) !important;
+            border-radius: 10px;
+            box-shadow: 0 0 10px 1px var(--bg-smoke),
+            0 0 10px 1px var(--bg-smoke);
+        }
+        #register-form .inputBox label{
+            color: var(--text-white) !important;
+            font-size: 10pt !important;
+            font-weight: 400 !important;
+            letter-spacing: 0.5px;
+            margin-left: 10px;
+            padding: 2px 0;
+        }
+        #register-form .inputBox input{
+            outline: none;
+            padding: 7px 10px;
+            font-size: 16pt;
+            color: var(--text-white) !important;
+            border: none;
+            border-radius: 10px;
+            background-color: var(--bg-smoke) !important;
+        }
+        body.light{
+            --bg-gray: #f1f7ff !important;
+        }
+    </style>
+</head>
+{% if dark %}
+<body>
+{% else %}
+<body class="light">
+{% endif %}
+
+    {% block bodyElement %}{% endblock %}
+
+    <div id="mode_btn" class="fs-3 d-flex justify-content-center align-items-center shadown-sm">
+        {% if dark %}
+        <span class="sun d-none mt-1">
+            <ion-icon name="sunny-outline" style="color: #000 !important;"></ion-icon>
+        </span>
+        {% else %}
+        <span class="moon">
+            <ion-icon name="moon-outline" style="color: #000 !important;"></ion-icon>
+        </span>
+        {% endif %}
+        
+    </div>
+
+</body>
+<script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script>
+    body = document.querySelector('body')
+    mode_btn = document.querySelector('#mode_btn')
+    mode_btn.onclick = ()=>{
+        body.classList.toggle("light")
+        myform = new FormData()
+        query = new Request("{% url 'mode' %}", {method:'POST',boby:myform})
+        fetch(query)
+        .then(resp=>resp)
+    }
+    
+    window.addEventListener('scroll', ()=>{
+        const {scrollHeight} = document.documentElement
+        // if (scrollHeight <= 200){
+        //     document.querySelector('#root .left-block').Style.position = 'absolute'
+        //     console.log(scrollHeight)
+        // }
+        console.dir(document.documentElement)
+    })
+
+</script>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</html>

@@ -1,0 +1,4 @@
+#dashboard .left-box{
+    background-color: var(--bg-gray) !important;
+    padding: 10px;
+}

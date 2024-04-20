@@ -1,0 +1,51 @@
+{% extends 'Dashboard.html' %}
+
+{% block sidebar %}
+<ul>
+    <li>
+        <a href="/" class="d-flex align-items-center my-4">
+            <ion-icon name="grid-outline"></ion-icon>
+            <span>Home</span>
+        </a>
+    </li>
+    <li> 
+        <a href="/dashboard" class="d-flex align-items-center my-4" id="active">
+            <ion-icon name="document-outline"></ion-icon>
+            <span>Posts</span>
+        </a>
+    </li>
+    <li>
+        <a href="comments/" class="d-flex align-items-center my-4">
+            <ion-icon name="chatbox-outline"></ion-icon>
+            <span>Comments</span>
+        </a>
+    </li>
+    <li>
+        <a href="#" class="d-flex align-items-center my-4">
+            <ion-icon name="settings-outline"></ion-icon>
+            <span>Settings</span>
+        </a>
+    </li>
+</ul>
+{% endblock %}
+
+{% block workspace %}
+<form action="" method="POST" enctype="multipart/form-data" id="form" class="d-flex flex-column align-items-center justify-content-center">
+    {% csrf_token %}
+    <span class="fs-2 fw-bold py-3" style="color: orange;">New Post</span>
+    <fieldset class="border-2 p-4">
+        
+        {{ Forms }}
+    </fieldset>
+    <input type="submit" value="Post" class="my-3 p-2 px-4 border-0 fs-5 fw-bold ls-2 rounded-pill" style="outline:none;background-color:orange;">
+</form>
+
+<script>
+    th_label = document.querySelector('form label[for="id_thumbails"]')
+    th_label.innerHTML = '<span class="fs-3 fw-bolder">Load Thumbails Image</span><img src="/static/image/upload.png">'
+    thumbails = document.querySelector('#id_thumbails')
+    thumbails.addEventListener('change', ()=>{
+        th_label.innerHTML = '<span class="rounded-circle p-3" style="border:2px solid green;"><svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 512 512"><polyline points="464 128 240 384 144 288" style="fill:none;stroke:green;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="144" y1="384" x2="48" y2="288" style="fill:none;stroke:green;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="368" y1="128" x2="232" y2="284" style="fill:none;stroke:green;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg></span>'
+    })
+</script>
+{% endblock %}

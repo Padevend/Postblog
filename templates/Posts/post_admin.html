@@ -1,0 +1,77 @@
+{% extends '../Dashboard.html' %}
+
+{% block sidebar %}
+<ul>
+    <li>
+        <a href="/" class="d-flex align-items-center my-4">
+            <ion-icon name="grid-outline"></ion-icon>
+            <span>Home</span>
+        </a>
+    </li>
+    <li> 
+        <a href="/dashboard" class="d-flex align-items-center my-4" id="active">
+            <ion-icon name="document-outline"></ion-icon>
+            <span>Posts</span>
+        </a>
+    </li>
+    <li>
+        <a href="comments/" class="d-flex align-items-center my-4">
+            <ion-icon name="chatbox-outline"></ion-icon>
+            <span>Comments</span>
+        </a>
+    </li>
+    <li>
+        <a href="#" class="d-flex align-items-center my-4">
+            <ion-icon name="settings-outline"></ion-icon>
+            <span>Settings</span>
+        </a>
+    </li>
+</ul>
+{% endblock %}
+
+{% block workspace %}
+<section class="d-flex flex-row w-100">
+    <div class="d-flex justify-content-center align-items-center m-4 flex-column w-50 py-4" style="background: var(--bg-gray) !important;border-radius: 10px !important;">
+        <span class="fs-4 fw-bold ls-1" style="color: var(--text-white);">Total Posts</span>
+        <span class="fs-3 fw-bold ls-1 py-3" id="total-post" style="color: var(--text-white);">{{ totalPost }}</span>
+    </div>
+    <div class="d-flex justify-content-center align-items-center m-4 flex-column w-50 py-4" style="background: var(--bg-gray) !important;border-radius: 10px !important;">
+        <span class="fs-4 fw-bold ls-1" style="color: var(--text-white);">Total views</span>
+        <span id="total-view" class="fs-3 fw-bold ls-1 py-3" style="color: var(--text-white);">0</span>
+    </div>
+</section>
+
+<section class="w-100 d-flex flex-column align-items-center py-4">
+    <a href="newpost/" id="new-post-btn" type="button" class="fs-4 fw-bolder d-flex align-items-center px-3 rounded-pill border-0" style="background: orange;color:var(--bg-smoke);">
+        <span class="fs-3 pe-2">+</span>
+        Add Post
+    </a>
+    {% for post in userPost %}
+
+        <div id="user-post" class="w-75 mt-4">
+            <a href="{% url 'posts' post.id %}" class="d-flex flex-row align-items-stretch w-100" style="overflow: hidden;background:var(--bg-gray) !important;border-radius: 10px 10px 10px 0 !important;">
+                <div class="w-75 d-flex flex-column" style="color: var(--text-white);">
+                    <span class="fs-3 fw-bolder p-4 pb-3">{{ post.title }}</span>
+                    <span class="px-3" style="overflow-x:auto;max-height:300px;">{{ post.intro }}</span>
+                </div>
+                {% if post.thumbails %}
+                    <img src="{{ post.thumbails.url }}" alt="" width="500px" height="300px" style="width: 50% !important;object-fit: cover;">
+                {% endif %}
+            </a>
+            <div class="d-flex align-items-center flex-row justify-content-between">
+                <div class="p-2 px-2" style="overflow: hidden;background:var(--bg-gray) !important;border-radius: 0 0 10px 10px !important;">
+                    <a href="{% url 'edit_post' post.id %}" type="button" class="border-0 fs-4 p-2" style="color: var(--text-black);background-color: var(--bg-white);border-radius: 10px;">
+                        <ion-icon name="pencil-outline"></ion-icon>
+                    </a>
+                    <a href="{% url 'delete' post.id %}" type="button" class="border-0 fs-4 p-2 ms-2" style="color: var(--bg-gray);background-color: orange;border-radius: 10px;">
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </a>
+                    
+                </div>
+                <span></span>
+            </div>
+        </div>
+
+    {% endfor %}
+</section>
+{% endblock %}

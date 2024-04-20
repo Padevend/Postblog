@@ -1,0 +1,32 @@
+{% extends 'head.html' %}
+
+    
+{% block bodyElement %}
+
+    <div class="d-flex justify-content-center align-items-center d-flex flex-column h-100 w-100">
+        
+        <form method="POST" id="register-form" class="p-4 w-25">
+            <div class="h1 text-center" style="color: orange !important;">Log In</div>
+            {% csrf_token %}
+            <div class="inputBox d-flex flex-column w-100 pt-4">
+                <label for="name">Username</label>
+                <input type="text" name="identifiant" id="name" class="w-100" placeholder="Indentifiant" required>
+            </div>
+            <div class="inputBox d-flex flex-column pb-3">
+                <label for="pwsd">Password</label>
+                <input type="password" name="password" id="pwsd" class="w-100" placeholder="••••••••" required>
+            </div>
+            {% for message in messages %}
+                <p class="text-danger">{{ message }}</p>
+            {% endfor %}
+            <span class="text-muted">
+                Don't have a account? <a href="/register" class="text-decoration-none" style="color: orange !important;">Sign up</a>
+            </span>
+
+            <div class="d-flex w-100 flex-row">
+                <button type="submit" class="w-100 mt-4 btn-light btn-outline-dark text-dark border-0 fw-bold fs-5 rounded-pill py-2" style="background-color: orange !important;">Login</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

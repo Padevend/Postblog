@@ -1,0 +1,89 @@
+{% extends 'head.html' %}
+
+{% block bodyElement %}
+
+<style>
+    #dashboard .workspace .id-title,
+    #dashboard .workspace label[for="id_thumbails"]{
+        outline: none;
+        padding: 15px 10px;
+        font-size: 16pt;
+        color: var(--text-white) !important;
+        border: none;
+        border-radius: 10px;
+        background-color: var(--bg-gray) !important;
+        width: 100%;
+        text-transform: capitalize;
+    }
+    #dashboard .workspace label[for="id_thumbails"]{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 30px 0;
+        height: 250px;
+        text-transform: none;
+    }
+    #dashboard .workspace label[for="id_thumbails"] img{
+        height: 150px;
+        width: 150px;
+        font-weight: 800;
+        opacity: .5;
+    }
+    #dashboard .workspace .id-title::placeholder{
+        text-transform: none !important;
+    }
+    #dashboard .workspace .summernote-div iframe{
+        overflow: hidden;
+        background: transparent !important;
+        height: 568px !important;
+        padding-top: 25px;
+        border-radius: 10px;
+    }
+</style>
+
+<div id="dashboard" class="d-flex flex-nowrap align-items-stretch w-100 h-100">
+    <div class="left-box h-100">
+        <div class="sec py-4">
+            <a href="#" class="d-flex align-items-center justify-content-center mb-md-0 me-md-auto text-dark text-decoration-none">
+                <span class="fs-1" id="blog-name">Tele <span style="color: orange !important;">POST</span></span>
+            </a>
+        </div>
+        <div id="link" class="pe-4">
+            {% block sidebar %}{% endblock %}
+        </div>
+    </div>
+    <div class="right-box w-100">
+        <nav class="d-flex justify-content-between w-100">
+            <div id="nav-title" class="d-flex align-items-stretch">
+                
+                <div class="d-flex align-items-stretch ">
+                    <button class="border-0 d-flex justify-content-center align-items-center">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </button>
+                    <input type="text" placeholder="Search ..." class="border-0 outline-none">
+                </div>
+                <a href="#" class="d-none align-items-center justify-content-center mb-md-0 me-md-auto text-dark text-decoration-none">
+                    <span class="fs-1" id="blog-name">Tele <span style="color: orange !important;">POST</span></span>
+                </a>
+            </div>
+            {% if user.is_authenticated %}
+                <div id="user-connect" class="d-flex flex-row align-items-center">
+                    <div class="rounded-circle p-4" id="profile-image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" class="mt-2" style="fill: var(--bg-white) !important;"><path d="M332.64,64.58C313.18,43.57,286,32,256,32c-30.16,0-57.43,11.5-76.8,32.38-19.58,21.11-29.12,49.8-26.88,80.78C156.76,206.28,203.27,256,256,256s99.16-49.71,103.67-110.82C361.94,114.48,352.34,85.85,332.64,64.58Z"/><path d="M432,480H80A31,31,0,0,1,55.8,468.87c-6.5-7.77-9.12-18.38-7.18-29.11C57.06,392.94,83.4,353.61,124.8,326c36.78-24.51,83.37-38,131.2-38s94.42,13.5,131.2,38c41.4,27.6,67.74,66.93,76.18,113.75,1.94,10.73-.68,21.34-7.18,29.11A31,31,0,0,1,432,480Z"/></svg>
+                    </div>
+                    <span class="text-light text-muted fs-4 px-4 text-capitalize">{{ user.username }}</span>
+                    <a href="/logout" class="text-decoration-none pe-3" id="text-white">(-_-)</a>
+                </div>
+                
+            {% endif %}
+        </nav>
+
+        <div class="workspace">
+            {% block workspace %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'head.html' %}
+
+{% block bodyElement %}
+
+<div id="header">
+    <header class="d-flex flex-wrap justify-content-center align-items-center py-4">
+        <a href="#" class="d-flex align-items-center justify-content-center mb-md-0 me-md-auto text-dark text-decoration-none">
+            <span class="fs-1 ms-4" id="blog-name">Tele <span style="color: orange !important;">POST</span></span>
+        </a>
+
+        {% if user.is_authenticated %}
+
+            <ul class="nav nav-pills" id="navbar">
+                <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
+                <li class="nav-item mx-4"><a href="/dashboard/" class="nav-link">Dashboard</a></li>
+                <li class="nav-item pe-4"><a href="#" class="nav-link">profile</a></li>
+            </ul>
+            
+            <div id="user-connect" class="d-flex flex-row align-items-center">
+                <div class="rounded-circle p-4" id="profile-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path d="M332.64,64.58C313.18,43.57,286,32,256,32c-30.16,0-57.43,11.5-76.8,32.38-19.58,21.11-29.12,49.8-26.88,80.78C156.76,206.28,203.27,256,256,256s99.16-49.71,103.67-110.82C361.94,114.48,352.34,85.85,332.64,64.58Z"/><path d="M432,480H80A31,31,0,0,1,55.8,468.87c-6.5-7.77-9.12-18.38-7.18-29.11C57.06,392.94,83.4,353.61,124.8,326c36.78-24.51,83.37-38,131.2-38s94.42,13.5,131.2,38c41.4,27.6,67.74,66.93,76.18,113.75,1.94,10.73-.68,21.34-7.18,29.11A31,31,0,0,1,432,480Z"/></svg>
+                </div>
+                <span class="text-light text-muted fs-4 px-4 text-capitalize">{{ user.username }}</span>
+
+                <a href="/logout" class="text-decoration-none pe-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path d="M304,336v40a40,40,0,0,1-40,40H104a40,40,0,0,1-40-40V136a40,40,0,0,1,40-40H256c22.09,0,48,17.91,48,40v40" style="fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><polyline points="368 336 448 256 368 176" style="fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="176" y1="256" x2="432" y2="256" style="fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
+                </a>
+            </div>
+
+        {% else %}
+
+            <ul class="nav nav-pills" id="navbar">
+                <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="/dashboard/" class="nav-link">Dashboard</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">profile</a></li>
+            </ul>
+
+            <div class="btn-group" role="group" aria-label="Button group">
+                <a href="/register" class="d-flex flex-wrap justify-content-center align-items-center text-light btn-dark bg-transparent border-1 m-4 mb-0 mt-0" id="text-white">Register</a>
+                <a href="/login" class="sign d-flex flex-wrap justify-content-center align-items-center text-dark btn-light me-4">Log In</a> 
+            </div>
+
+        {% endif %}
+        
+    </header>
+</div>
+
+    {% block container %}{% endblock %}
+
+{% endblock %}
