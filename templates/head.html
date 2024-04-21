@@ -109,15 +109,11 @@
         }
     </style>
 </head>
-{% if dark %}
-<body>
-{% else %}
-<body class="light">
-{% endif %}
 
+<body class="light">
     {% block bodyElement %}{% endblock %}
 
-    <div id="mode_btn" class="fs-3 d-flex justify-content-center align-items-center shadown-sm">
+    <div id="mode_btn" theme="light" class="fs-3 d-flex justify-content-center align-items-center shadown-sm">
         {% if dark %}
         <span class="sun d-none mt-1">
             <ion-icon name="sunny-outline" style="color: #000 !important;"></ion-icon>
@@ -134,25 +130,35 @@
 <script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
 <script>
-    body = document.querySelector('body')
+   body = document.querySelector('body')
     mode_btn = document.querySelector('#mode_btn')
     mode_btn.onclick = ()=>{
         body.classList.toggle("light")
         myform = new FormData()
-        query = new Request("{% url 'mode' %}", {method:'POST',boby:myform})
-        fetch(query)
-        .then(resp=>resp)
+        theme = mode_btn.getAttribute("theme")
+        if(theme=="dark"){
+            localStorage.setItem('theme','light')
+            mode_btn.setAttribute('theme','light')
+        }else{
+            localStorage.removeItem('theme')
+            localStorage.setItem('theme','dark')
+            mode_btn.setAttribute('theme','dark')
+        }
     }
-    
+    window.addEventListener('load', ()=>{
+        theme = localStorage.getItem('theme')
+        if(theme == 'light'){
+            body.classList.add('light')
+            mode_btn.setAttribute('theme','light')
+        }else{
+            body.classList.remove('light')
+            mode_btn.setAttribute('theme','dark')
+        }
+    })
     window.addEventListener('scroll', ()=>{
         const {scrollHeight} = document.documentElement
-        // if (scrollHeight <= 200){
-        //     document.querySelector('#root .left-block').Style.position = 'absolute'
-        //     console.log(scrollHeight)
-        // }
         console.dir(document.documentElement)
     })
-
 </script>
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
