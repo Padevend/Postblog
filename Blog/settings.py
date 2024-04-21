@@ -90,10 +90,14 @@ WSGI_APPLICATION = 'Blog.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 # if not DEBUG:
 DATABASES = {
-    'default': dj_database_url.config(
-        default = os.environ.get("DATABASE_URL"),
-        conn_max_age=600
-    ),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'blog_db',
+        'USER': 'blog_db_z7cu_user',
+        'PASSWORD': 'PrfnITbnYAqRkj4fDj1Ezdkme8iNfkSs',
+        'HOST': 'dpg-coiaadn79t8c738dkfg0-a',
+        'PORT': '5432'
+    }
 }
 # else:
 #     DATABASES = {
