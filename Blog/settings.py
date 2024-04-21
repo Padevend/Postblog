@@ -33,7 +33,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-53sd8ud6&*g2ve#q-$_axo_j#mvhr3f!%oe^$5l4t^d)-esm6)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
+DEBUG = os.environ.get('DEBUG', 'True')=="True"
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "telepost-2ut0.onrender.com"]
 
