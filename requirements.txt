@@ -12,6 +12,7 @@ Markdown
 packaging==24.0
 pillow 
 psycopg2==2.9.9
+psycopg2-binary
 pydub==0.25.1
 Pygments==2.17.2
 six==1.16.0
