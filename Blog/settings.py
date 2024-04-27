@@ -34,7 +34,7 @@ SECRET_KEY = 'django-insecure-53sd8ud6&*g2ve#q-$_axo_j#mvhr3f!%oe^$5l4t^d)-esm6'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True')=="True"
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "telepost-2ut0.onrender.com"]
 
@@ -89,23 +89,15 @@ WSGI_APPLICATION = 'Blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 # if not DEBUG:
+DATABASES = {
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+}
 #DATABASES = {
 #    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'blog_db_z7cu',
-#        'USER': 'blog_db_z7cu_user',
-#        'PASSWORD': 'PrfnITbnYAqRkj4fDj1Ezdkme8iNfkSs',
-#        'HOST': 'dpg-coiaadn79t8c738dkfg0-a',
-#        'PORT': '5432'
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
 #    }
 #}
-# else:
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 
 # Password validation
@@ -142,14 +134,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 X_FRAME_OPTIONS = 'SAMEORIGIN'
-MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 SUMMERNOTE_CONFIG = {
