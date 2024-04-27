@@ -22,7 +22,7 @@
             <div class="post py-3" style="border-top: 2px solid var(--bg-smoke);">
                 <span class="d-flex flex-wrap fs-4 fw-bold lh-1" id="text-white">{{ recents.title }}</span>
                 <span class="d-flex flex-wrap fs-6 lh-1 fw-400" id="rc-post-intro">{{ recents.intro }}</span>
-                <a href="{% url 'posts' recents.id %}" id="text-white" class="fs-6 pt-2">More <ion-icon name="chevron-down-outline"></ion-icon></a>
+                <a href="{% url 'posts' pk=recents.pk %}" id="text-white" class="fs-6 pt-2">More <ion-icon name="chevron-down-outline"></ion-icon></a>
             </div>
             
         </div>
