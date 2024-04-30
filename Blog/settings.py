@@ -141,8 +141,8 @@ STATICFILES = (
 )
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR/'media/'
 
 SUMMERNOTE_CONFIG = {
     'summernote':{
