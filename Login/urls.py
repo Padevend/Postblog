@@ -12,6 +12,8 @@ urlpatterns = [
     path('posts/<int:pk>/', views.postPage, name='posts'),
     path('darkmode/', views.darkMode, name='mode'),
     path('dashboard/', include('board.urls'), name='dashboard'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 admin.site.site_header = "Tele foot"
