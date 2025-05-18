@@ -36,7 +36,7 @@ SECRET_KEY = 'django-insecure-53sd8ud6&*g2ve#q-$_axo_j#mvhr3f!%oe^$5l4t^d)-esm6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "telepost-2ut0.onrender.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "telepost-2ut0.onrender.com", "postblog-iwhb.onrender.com"]
 
 
 # Application definition
